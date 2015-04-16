@@ -5,11 +5,22 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+
 class ArticleController extends Controller {
 
-	public function show(){
+	public function index(){
 		$articles = \App\Article::all();
-		return view('article.show', compact('articles'));
+		return view('article.index', compact('articles'));
+	}
+
+	public function show($id){
+		$article = \App\Article::findOrFail($id);
+		//dd($article);
+		return view('article.show', compact('article'));
+	}
+
+	public function create(){
+		return view('article.create');
 	}
 
 }
